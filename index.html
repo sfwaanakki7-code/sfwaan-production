@@ -1,0 +1,683 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SFWAAN PRODUCTION | صفوان العكي - وكالة الإنتاج البصري والهندسة الرقمية</title>
+  <meta name="description" content="المنصة الرسمية للمهندس البصري وصانع المحتوى صفوان العكي - SFWAAN PRODUCTION. تصميم صور، محاكاة معمارية 3D، إنتاج سينمائي، وهويات بصرية فائقة الجودة.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-dark: #06030a;
+      --bg-card: rgba(18, 10, 28, 0.72);
+      --purple-royal: #7e22ce;
+      --purple-glow: #a855f7;
+      --crimson-deep: #be123c;
+      --crimson-glow: #f43f5e;
+      --gold-accent: #f59e0b;
+      --text-main: #f8fafc;
+      --text-muted: #cbd5e1;
+      --border-glass: rgba(168, 85, 247, 0.22);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Cairo', sans-serif;
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background-color: var(--bg-dark);
+      color: var(--text-main);
+      overflow-x: hidden;
+      line-height: 1.7;
+    }
+
+    #stars-canvas {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      z-index: -1;
+      pointer-events: none;
+      background: radial-gradient(circle at 15% 20%, rgba(126, 34, 206, 0.16), transparent 45%),
+                  radial-gradient(circle at 85% 75%, rgba(190, 18, 60, 0.14), transparent 50%),
+                  #06030a;
+    }
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      backdrop-filter: blur(16px);
+      background: rgba(6, 3, 10, 0.82);
+      border-bottom: 1px solid var(--border-glass);
+      padding: 0.9rem 5%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+      color: #fff;
+    }
+
+    .brand-badge {
+      width: 44px;
+      height: 44px;
+      border-radius: 12px;
+      background: linear-gradient(135deg, var(--purple-royal), var(--crimson-deep));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 900;
+      font-size: 1.3rem;
+      box-shadow: 0 0 20px rgba(168, 85, 247, 0.5);
+    }
+
+    .brand-text h2 {
+      font-size: 1.15rem;
+      font-weight: 900;
+      letter-spacing: 0.5px;
+      line-height: 1.2;
+    }
+
+    .brand-text span {
+      font-size: 0.75rem;
+      color: var(--purple-glow);
+      display: block;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 1.5rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      color: var(--text-muted);
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.95rem;
+      transition: 0.3s;
+    }
+
+    .nav-links a:hover {
+      color: var(--crimson-glow);
+    }
+
+    .header-cta {
+      background: linear-gradient(135deg, var(--purple-royal), var(--crimson-deep));
+      color: #fff;
+      text-decoration: none;
+      padding: 0.55rem 1.3rem;
+      border-radius: 50px;
+      font-weight: 700;
+      font-size: 0.9rem;
+      box-shadow: 0 0 18px rgba(190, 18, 60, 0.45);
+      transition: 0.3s;
+    }
+
+    .header-cta:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 0 26px rgba(168, 85, 247, 0.75);
+    }
+
+    .hero {
+      padding: 5.5rem 5% 4rem;
+      max-width: 1250px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .status-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(190, 18, 60, 0.15);
+      border: 1px solid rgba(244, 63, 94, 0.4);
+      padding: 0.4rem 1.2rem;
+      border-radius: 50px;
+      font-size: 0.88rem;
+      color: #fda4af;
+      margin-bottom: 1.5rem;
+    }
+
+    .hero h1 {
+      font-size: clamp(2.1rem, 5vw, 3.8rem);
+      font-weight: 900;
+      line-height: 1.25;
+      margin-bottom: 1.2rem;
+    }
+
+    .gradient-text {
+      background: linear-gradient(90deg, #c084fc, #f43f5e, #f59e0b);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .hero p {
+      max-width: 780px;
+      margin: 0 auto 2.2rem;
+      font-size: 1.12rem;
+      color: var(--text-muted);
+    }
+
+    .btn-group {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 1rem;
+      margin-bottom: 3rem;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, var(--purple-royal), var(--crimson-deep));
+      color: #fff;
+      padding: 0.9rem 2rem;
+      border-radius: 14px;
+      text-decoration: none;
+      font-weight: 800;
+      font-size: 1.02rem;
+      box-shadow: 0 8px 28px rgba(190, 18, 60, 0.4);
+      transition: 0.3s;
+      border: none;
+      cursor: pointer;
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 12px 35px rgba(168, 85, 247, 0.65);
+    }
+
+    .btn-outline {
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid var(--border-glass);
+      color: #fff;
+      padding: 0.9rem 1.8rem;
+      border-radius: 14px;
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 1rem;
+      transition: 0.3s;
+    }
+
+    .btn-outline:hover {
+      background: rgba(168, 85, 247, 0.14);
+      border-color: var(--purple-glow);
+    }
+
+    .stats-bar {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 1.2rem;
+      background: var(--bg-card);
+      border: 1px solid var(--border-glass);
+      border-radius: 20px;
+      padding: 1.8rem;
+      backdrop-filter: blur(12px);
+    }
+
+    .stat-box h3 {
+      font-size: 2rem;
+      font-weight: 900;
+      color: var(--crimson-glow);
+    }
+
+    .stat-box p {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      margin: 0;
+    }
+
+    section {
+      padding: 4.5rem 5%;
+      max-width: 1280px;
+      margin: 0 auto;
+    }
+
+    .section-head {
+      text-align: center;
+      margin-bottom: 3rem;
+    }
+
+    .section-head span {
+      color: var(--crimson-glow);
+      font-weight: 700;
+      font-size: 0.9rem;
+      letter-spacing: 1px;
+    }
+
+    .section-head h2 {
+      font-size: clamp(1.8rem, 3.5vw, 2.6rem);
+      font-weight: 900;
+      margin-top: 0.4rem;
+    }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(310px, 1fr));
+      gap: 1.6rem;
+    }
+
+    .service-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-glass);
+      border-radius: 20px;
+      padding: 1.8rem;
+      backdrop-filter: blur(12px);
+      transition: 0.35s;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .service-card::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 100%;
+      height: 4px;
+      background: linear-gradient(90deg, var(--purple-glow), var(--crimson-glow));
+    }
+
+    .service-card:hover {
+      transform: translateY(-6px);
+      border-color: rgba(244, 63, 94, 0.55);
+      box-shadow: 0 14px 35px rgba(126, 34, 206, 0.25);
+    }
+
+    .service-num {
+      display: inline-block;
+      background: rgba(168, 85, 247, 0.15);
+      color: #d8b4fe;
+      padding: 0.25rem 0.85rem;
+      border-radius: 50px;
+      font-size: 0.8rem;
+      font-weight: 800;
+      margin-bottom: 1rem;
+      width: fit-content;
+    }
+
+    .service-card h3 {
+      font-size: 1.28rem;
+      font-weight: 800;
+      margin-bottom: 0.75rem;
+      color: #fff;
+    }
+
+    .service-card p {
+      color: var(--text-muted);
+      font-size: 0.95rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .card-actions {
+      display: flex;
+      gap: 0.6rem;
+      flex-wrap: wrap;
+    }
+
+    .card-btn-main {
+      flex: 1;
+      text-align: center;
+      background: linear-gradient(135deg, var(--purple-royal), var(--crimson-deep));
+      color: #fff;
+      text-decoration: none;
+      padding: 0.6rem 0.9rem;
+      border-radius: 10px;
+      font-size: 0.86rem;
+      font-weight: 700;
+    }
+
+    .card-btn-test {
+      flex: 1;
+      text-align: center;
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(244, 63, 94, 0.4);
+      color: #fda4af;
+      text-decoration: none;
+      padding: 0.6rem 0.9rem;
+      border-radius: 10px;
+      font-size: 0.86rem;
+      font-weight: 700;
+    }
+
+    .watermark-box {
+      background: linear-gradient(135deg, rgba(30, 12, 48, 0.85), rgba(45, 10, 28, 0.85));
+      border: 1px solid rgba(244, 63, 94, 0.35);
+      border-radius: 24px;
+      padding: 2.5rem;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 2rem;
+      align-items: center;
+    }
+
+    .wm-preview {
+      position: relative;
+      height: 230px;
+      border-radius: 16px;
+      background: radial-gradient(circle, #3b0764, #09040e);
+      border: 1px solid var(--border-glass);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+
+    .wm-overlay {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transform: rotate(-18deg);
+      font-size: 1.5rem;
+      font-weight: 900;
+      color: rgba(255, 255, 255, 0.22);
+      letter-spacing: 3px;
+      pointer-events: none;
+      border: 2px dashed rgba(244, 63, 94, 0.35);
+    }
+
+    .tiktok-showcase {
+      background: var(--bg-card);
+      border: 1px solid var(--border-glass);
+      border-radius: 24px;
+      padding: 2.5rem;
+      text-align: center;
+    }
+
+    footer {
+      border-top: 1px solid var(--border-glass);
+      padding: 2.5rem 5%;
+      text-align: center;
+      color: var(--text-muted);
+      font-size: 0.9rem;
+    }
+
+    @media (max-width: 768px) {
+      .nav-links {
+        display: none;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <canvas id="stars-canvas"></canvas>
+
+  <header>
+    <a href="#" class="brand">
+      <div class="brand-badge">S</div>
+      <div class="brand-text">
+        <h2>SFWAAN PRODUCTION</h2>
+        <span>صفوان العكي • هندسة وإنتاج بصري</span>
+      </div>
+    </a>
+    <ul class="nav-links">
+      <li><a href="#services">الخدمات الحصرية</a></li>
+      <li><a href="#guarantee">نظام المعاينة والتيست</a></li>
+      <li><a href="#portfolio">الاستوديو الحي</a></li>
+    </ul>
+    <a href="https://wa.me/201040779792?text=أهلاً%20صفوان،%20دخلت%20موقعك%20وعايز%20أبدأ%20مشروع%20جديد" target="_blank" class="header-cta">تواصل واتساب مباشر</a>
+  </header>
+
+  <div class="hero">
+    <div class="status-pill">✨ متاح الآن لاستلام المشاريع الاحترافية وطلبات التيست التجريبي</div>
+    <h1>فخامة الإنتاج البصري والهندسة الرقمية<br><span class="gradient-text">مع صفوان العكي | SFWAAN PRODUCTION</span></h1>
+    <p>نُحول أفكارك إلى واقع بصري سينمائي ومعماري وإعلاني فائق الدقة بمنظومة إنتاج رقمية خاصة وحصرية، دون الحاجة لاستوديوهات تصوير تقليدية، مع إمكانية طلب عينة تجريبية (Test) لمشروعك قبل البدء.</p>
+    <div class="btn-group">
+      <a href="https://wa.me/201040779792?text=أهلاً%20صفوان،%20عايز%20أطلب%20تيست%20تجريبي%20لمشروعي" target="_blank" class="btn-primary">اطلب تيست (عينة تجريبية) الآن</a>
+      <a href="https://www.tiktok.com/@l.sfwaan.l" target="_blank" class="btn-outline">استكشف الاستوديو الحي على تيك توك (+55K)</a>
+    </div>
+
+    <div class="stats-bar">
+      <div class="stat-box">
+        <h3>+55,000</h3>
+        <p>متابع على منصة تيك توك (@l.sfwaan.l)</p>
+      </div>
+      <div class="stat-box">
+        <h3>10</h3>
+        <p>قطاعات إنتاج بصري وهندسي متكاملة</p>
+      </div>
+      <div class="stat-box">
+        <h3>4K / Full HD</h3>
+        <p>جودة تسليم ماستر فائقة النقاء</p>
+      </div>
+      <div class="stat-box">
+        <h3>100%</h3>
+        <p>معاينة بالعلامة المائية قبل الدفع النهائي</p>
+      </div>
+    </div>
+  </div>
+
+  <section id="services">
+    <div class="section-head">
+      <span>منظومة SFWAAN الحصرية</span>
+      <h2>الخدمات الاحترافية المتكاملة</h2>
+    </div>
+
+    <div class="services-grid">
+      <div class="service-card">
+        <div>
+          <span class="service-num">الخدمة 01</span>
+          <h3>تصميم الصور المصغرة وأغلفة الكتب</h3>
+          <p>تصميم صور مصغرة (Thumbnails) لليوتيوب وفيسبوك وأغلفة الكتب والمجلات بتركيبات بصرية درامية ترفع نسب النقر والمشاهدة من اللحظة الأولى.</p>
+        </div>
+        <div class="card-actions">
+          <a href="https://wa.me/201040779792?text=أهلاً%20صفوان،%20عايز%20أطلب%20خدمة%20تصميم%20الصور%20المصغرة%20وأغلفة%20الكتب" target="_blank" class="card-btn-main">اطلب الخدمة</a>
+          <a href="https://wa.me/201040779792?text=أهلاً%20صفوان،%20ممكن%20تيست%20لتصميم%20صورة%20مصغرة؟" target="_blank" class="card-btn-test">اطلب تيست</a>
+        </div>
+      </div>
+
+      <div class="service-card">
+        <div>
+          <span class="service-num">الخدمة 02</span>
+          <h3>البانرات الاحترافية والأفاتار الشخصي الدائري</h3>
+          <p>تصميم أغلفة الصفحات (Banners) وصور البروفايل الدائرية والأفاتار المخصص لتيك توك وإنستغرام وفيسبوك بأسلوب يمنح حسابك هيبة فورية.</p>
+        </div>
+        <div class="card-actions">
+          <a href="https://wa.me/201040779792?text=أهلاً%20صفوان،%20عايز%20أطلب%20خدمة%20البانرات%20والأفاتار%20الشخصي" target="_blank" class="card-btn-main">اطلب الخدمة</a>
+          <a href="https://wa.me/201040779792?text=أهلاً%20صفوان،%20ممكن%20تيست%20لأفاتار%20وبانر؟" target="_blank" class="card-btn-test">اطلب تيست</a>
+        </div>
+      </div>
+
+      <div class="service-card">
+        <div>
+          <span class="service-num">الخدمة 03</span>
+          <h3>ملفات التقديم PDF لأجهزة المدن والمولات</h3>
+          <p>إعداد وتصميم ملفات عرض المشروعات الهندسية والتجارية (PDF) لتراخيص الأكشاك، البارتشنات التجارية، والوحدات داخل المولات وأجهزة المدن بأعلى المعايير الرسمية.</p>
+        </div>
+        <div class="card-actions">
+          <a href="https://wa.me/201040779792?text=أهلاً%20صفوان،%20عايز%20أجهز%20ملف%20PDF%20لمشروع%20تجاري%20أو%20جهاز%20مدينة" target="_blank" class="card-btn-main">اطلب الخدمة</a>
+          <a href="https://wa.me/201040779792?text=أهلاً%20صفوان،%20عايز%20نموذج%20لملف%20تقديم%20مشروع%20PDF" target="_blank" class="card-btn-test">اطلب تيست</a>
+        </div>
+      </div>
+
+      <div class="service-card">
+        <div>
+          <span class="service-num">الخدمة 04</span>
+          <h3>المحاكاة المعمارية 3D ومراحل إنشاء المباني</h3>
+          <p>استعراض مراحل بناء المنشآت من الأساس حتى التشطيب النهائي مع جولات كاميرا دائرية 360 درجة من الداخل والخارج بتحكم بصري كامل.</p>
+        </div>
+        <div class="card-actions">
+          <a href="https://wa.me/201040779792?text=أهلاً%20صفوان،%20عايز%20خدمة%20المحاكاة%20المعمارية%203D%20ومراحل%20الإنشاء" target="_blank" class="card-btn-main">اطلب الخدمة</a>
+          <a href="https://wa.me/201040779792?text=أهلاً%20صفوان،%20ممكن%20تيست%20لمحاكاة%20مبنى%203D؟" target="_blank" class="card-btn-test">اطلب تيست</a>
+        </div>
+      </div>
+
+      <div class="service-card">
+        <div>
+          <span class="service-num">الخدمة 05</span>
+          <h3>الإنتاج السينمائي بملامحك بدون استوديو</h3>
+          <p>إنتاج أفلام قصيرة ومشاهد سينمائية يظهر فيها العميل بشخصيته وملامحه الحقيقية عبر بناء "ماستر رقمي" متكامل دون الحاجة للحضور إلى استوديو تصوير.</p>
+        </div>
+        <div class="card-actions">
+          <a href="https://wa.me/201040779792?text=أهلاً%20صفوان،%20عايز%20أنتج%20فيديو%20سينمائي%20بملامحي" target="_blank" class="card-btn-main">اطلب الخدمة</a>
+          <a href="https://wa.me/201040779792?text=أهلاً%20صفوان،%20ممكن%20تيست%20ماستر%20رقمي%20بملامحي؟" target="_blank" class="card-btn-test">اطلب تيست</a>
+        </div>
+      </div>
+
+      <div class="service-card">
+        <div>
+          <span class="service-num">الخدمة 06</span>
+          <h3>الفيديوهات الإعلانية التوليدية الفائقة</h3>
+          <p>صناعة إعلانات تجارية سينمائية للمنتجات والمطاعم والشركات بمؤثرات بصرية وصوتية تخطف الأنظار وتضاعف المبيعات.</p>
+        </div>
+        <div class="card-actions">
+          <a href="https://wa.me/201040779792?text=أهلاً%20صفوان،%20عايز%20أعمل%20فيديو%20إعلاني%20احترافي" target="_blank" class="card-btn-main">اطلب الخدمة</a>
+          <a href="https://wa.me/201040779792?text=أهلاً%20صفوان،%20ممكن%20تيست%20لفكرة%20إعلان؟" target="_blank" class="card-btn-test">اطلب تيست</a>
+        </div>
+      </div>
+
+      <div class="service-card">
+        <div>
+          <span class="service-num">الخدمة 07</span>
+          <h3>تصميم الشعارات والهويات البصرية الملكية</h3>
+          <p>ابتكار شعارات (Logos) وهويات تجارية كاملة بتجسيد ثلاثي الأبعاد وخامات ميتاليك وذهبية تعكس قوة العلامة التجارية.</p>
+        </div>
+        <div class="card-actions">
+          <a href="https://wa.me/201040779792?text=أهلاً%20صفوان،%20عايز%20أصمم%20لوجو%20وهوية%20بصرية" target="_blank" class="card-btn-main">اطلب الخدمة</a>
+          <a href="https://wa.me/201040779792?text=أهلاً%20صفوان،%20ممكن%20تيست%20مبدئي%20للوجو؟" target="_blank" class="card-btn-test">اطلب تيست</a>
+        </div>
+      </div>
+
+      <div class="service-card">
+        <div>
+          <span class="service-num">الخدمة 08</span>
+          <h3>تصميم مينيوهات المطاعم والكافيهات الشهية</h3>
+          <p>تصميم قوائم طعام (Menus) وبوسترات سوشيال ميديا للمطاعم والكافيهات بإضاءة وتفاصيل تفتح الشهية وتزيد الطلبات الفورية.</p>
+        </div>
+        <div class="card-actions">
+          <a href="https://wa.me/201040779792?text=أهلاً%20صفوان،%20عايز%20أصمم%20منيو%20وبوسترات%20مطعم" target="_blank" class="card-btn-main">اطلب الخدمة</a>
+          <a href="https://wa.me/201040779792?text=أهلاً%20صفوان،%20ممكن%20تيست%20لتصميم%20منيو؟" target="_blank" class="card-btn-test">اطلب تيست</a>
+        </div>
+      </div>
+
+      <div class="service-card">
+        <div>
+          <span class="service-num">الخدمة 09</span>
+          <h3>تحرير الفيديو الاحترافي والقوالب الإبداعية</h3>
+          <p>مونتاج ديناميكي سريع الإيقاع، انتقالات بصرية خاطفة، وتصميم قوالب احترافية جاهزة لصناع المحتوى والعلامات التجارية.</p>
+        </div>
+        <div class="card-actions">
+          <a href="https://wa.me/201040779792?text=أهلاً%20صفوان،%20عايز%20خدمة%20مونتاج%20وتحرير%20فيديو" target="_blank" class="card-btn-main">اطلب الخدمة</a>
+          <a href="https://wa.me/201040779792?text=أهلاً%20صفوان،%20ممكن%20تيست%20مونتاج%20قصير؟" target="_blank" class="card-btn-test">اطلب تيست</a>
+        </div>
+      </div>
+
+      <div class="service-card">
+        <div>
+          <span class="service-num">الخدمة 10</span>
+          <h3>التجسيد والمحاكاة ثلاثية الأبعاد للمنتجات</h3>
+          <p>بناء وتجسيد المجسمات والمنتجات التجارية في بيئات إضاءة سينمائية ثلاثية الأبعاد فائقة الواقعية دون الحاجة لبرامج النمذجة التقليدية المعقدة.</p>
+        </div>
+        <div class="card-actions">
+          <a href="https://wa.me/201040779792?text=أهلاً%20صفوان،%20عايز%20خدمة%20تجسيد%20منتج%203D" target="_blank" class="card-btn-main">اطلب الخدمة</a>
+          <a href="https://wa.me/201040779792?text=أهلاً%20صفوان،%20ممكن%20تيست%20تجسيد%203D؟" target="_blank" class="card-btn-test">اطلب تيست</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="guarantee">
+    <div class="watermark-box">
+      <div>
+        <span style="color: var(--crimson-glow); font-weight: 800;">ضمان الجودة وحماية الحقوق</span>
+        <h2 style="font-size: 2rem; margin: 0.5rem 0 1rem;">شاهد نتيجتك أولاً.. واستلم النسخة الصافية بعد الاعتماد</h2>
+        <p style="color: var(--text-muted); margin-bottom: 1.5rem;">
+          في <strong>SFWAAN PRODUCTION</strong> نمنحك راحة بال تامة؛ حيث تستلم معاينة كاملة لمشروعك محمية بعلامة مائية واضحة لمراجعتها وطلب أي تعديلات، وبعد رضاك التام وإتمام الدفع تستلم النسخة الأصلية الصافية بجودة 4K بدون أي علامة مائية.
+        </p>
+        <a href="https://wa.me/201040779792?text=أهلاً%20صفوان،%20عايز%20أبدأ%20مشروع%20بنظام%20المعاينة" target="_blank" class="btn-primary">ابدأ مشروعك بأمان الآن</a>
+      </div>
+      <div class="wm-preview">
+        <div style="text-align: center; z-index: 2;">
+          <h3 style="color: #fff;">معاينة المشروع قبل التسليم النهائي</h3>
+          <p style="color: #fda4af; font-size: 0.9rem;">نسخة المراجعة والتعديلات</p>
+        </div>
+        <div class="wm-overlay">SFWAAN PRODUCTION PREVIEW</div>
+      </div>
+    </div>
+  </section>
+
+  <section id="portfolio">
+    <div class="tiktok-showcase">
+      <span style="color: var(--purple-glow); font-weight: 800;">المعرض الحي والمتجدد</span>
+      <h2 style="font-size: 2.2rem; margin: 0.5rem 0 1rem;">شاهد أحدث الإبداعات مباشرة على تيك توك</h2>
+      <p style="color: var(--text-muted); max-width: 680px; margin: 0 auto 2rem;">
+        تابع الحساب الرسمي لـ <strong>صفوان العكي (@l.sfwaan.l)</strong> الذي يضم أكثر من <strong>55,000 متابع</strong> لمشاهدة أحدث الفيديوهات السينمائية، المحاكاة ثلاثية الأبعاد، والمؤثرات البصرية الحية.
+      </p>
+      <div class="btn-group" style="margin-bottom: 0;">
+        <a href="https://www.tiktok.com/@l.sfwaan.l" target="_blank" class="btn-primary">افتح معرض تيك توك الرسمي (@l.sfwaan.l)</a>
+        <a href="https://wa.me/201040779792?text=أهلاً%20صفوان،%20شفت%20شغلك%20وعايز%20أعمل%20مشروع%20احترافي" target="_blank" class="btn-outline">تحدث مع صفوان عبر واتساب: 01040779792</a>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <p>© جميع الحقوق محفوظة لـ <strong>SFWAAN PRODUCTION — صفوان العكي</strong> | للتواصل المباشر واتساب: 01040779792</p>
+  </footer>
+
+  <script>
+    // تنظيف الرابط تلقائياً من زوائد فيسبوك وأي معلمات تتبع لضمان سرعة الفتح
+    if (window.location.search.includes('fbclid')) {
+      const cleanUrl = window.location.protocol + "//" + window.location.host + window.location.pathname;
+      window.history.replaceState({}, document.title, cleanUrl);
+    }
+
+    // خلفية النجوم الهادئة بألوان الأرجواني والقرمزي
+    const canvas = document.getElementById('stars-canvas');
+    const ctx = canvas.getContext('2d');
+    let stars = [];
+
+    function resizeCanvas() {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    }
+    window.addEventListener('resize', resizeCanvas);
+    resizeCanvas();
+
+    const colors = ['#ffffff', '#c084fc', '#f43f5e', '#f59e0b'];
+    for (let i = 0; i < 110; i++) {
+      stars.push({
+        x: Math.random() * canvas.width,
+        y: Math.random() * canvas.height,
+        r: Math.random() * 1.6 + 0.4,
+        speed: Math.random() * 0.35 + 0.08,
+        color: colors[Math.floor(Math.random() * colors.length)]
+      });
+    }
+
+    function animateStars() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      stars.forEach(s => {
+        ctx.beginPath();
+        ctx.arc(s.x, s.y, s.r, 0, Math.PI * 2);
+        ctx.fillStyle = s.color;
+        ctx.fill();
+        s.y -= s.speed;
+        if (s.y < 0) {
+          s.y = canvas.height;
+          s.x = Math.random() * canvas.width;
+        }
+      });
+      requestAnimationFrame(animateStars);
+    }
+    animateStars();
+  </script>
+</body>
+</html>
